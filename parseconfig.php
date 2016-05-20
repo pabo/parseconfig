@@ -68,7 +68,6 @@ function parseConfig($configspec, $configfile) {
 			if (preg_match("/^(.+?)\s*=\s*(.+?)$/", $line, $matches)) {
 				$name = $matches[1];
 				$value = $matches[2];
-				print "name |$name| value |$value|\n";
 
 				# if variable name is whitelisted
 				# then check against provided regex, or this type's default regex
