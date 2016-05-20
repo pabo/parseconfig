@@ -65,7 +65,7 @@ function parseConfig($configspec, $configfile) {
 			$line = rtrim($line);
 
 			# if the line has an = in it, ignore optional spaces directly on either side and try to parse as name=value
-			if (preg_match("/^(.+?)\s*=\s*(.+?)$/", $line, $matches)) {
+			if (preg_match("/^\s*(.+?)\s*=\s*(.+?)$/", $line, $matches)) {
 				$name = $matches[1];
 				$value = $matches[2];
 
