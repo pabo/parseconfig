@@ -1,10 +1,10 @@
 # Welcome to parseConfig
 This is a sample PHP project for a developer position. Please see my other sample repositories as well!
 
-1. [parseConfig()](parseConfig)
-2. [Specification](Specification)
-3. [Example](Example Usage)
-3. [Author](Author)
+1. [parseConfig()](#parseConfig)
+2. [Specification](#Specification)
+3. [Example](#Example Usage)
+3. [Author](#Author)
 
 ## parseConfig()
 `parseConfig()` parses a configuration file which may contain comments and configuration variable key/pairs and spits out an associative array of the variables which it set. This parsing is done line by line.
