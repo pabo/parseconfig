@@ -25,6 +25,8 @@ There are three supported types:
 ## Example usage:
 See `test.php` for a demonstration, or this short snippet below:
 
+    require_once('parseconfig.php');
+
     $configspec = array(
       "user" => array(
         "type" => 'string',
@@ -49,6 +51,11 @@ See `test.php` for a demonstration, or this short snippet below:
     if ($config[verbose]) {
         print "User $config[user] on server_id $config[server_id]\n";
     }
+
+Given the sample configuration file, below, the above code would output
+
+    User user on server_id 55331
+
 
 ## Specification
 Write some code that can parse a configuration file

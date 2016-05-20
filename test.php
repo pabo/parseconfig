@@ -2,8 +2,8 @@
 
 require_once('parseconfig.php');
 
-$filename = "test.config";
-#$filename = "influx.config";
+#$filename = "test.config";
+$filename = "influx.config";
 
 # configconfig is the specification of variables that are allowed in the config file. How meta!
 $configconfig = array(
