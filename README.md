@@ -1,4 +1,10 @@
-Specification
+1. [Specification]
+2. [parseConfig()]
+
+
+
+
+## Specification
 =============
 Write some code that can parse a configuration file
 following the specifications below. Follow your
@@ -20,7 +26,7 @@ own best practices and coding/design principles.
   how you call it/etc.
 - Push your work to a public github repository and send us the link.
 
-Valid config file:
+## Valid config file:
 ================
 
     # This is what a comment looks like, ignore it
@@ -36,9 +42,9 @@ Valid config file:
     log_file_path = /tmp/logfile.log
     send_notifications = yes
 
-parseConfig()
+## parseConfig()
 ===========
-parseConfig() parses a configuration file which may contain comments and configuration variable key/pairs and spits out an associative array of the variables which it set. This parsing is done line by line.
+`parseConfig()` parses a configuration file which may contain comments and configuration variable key/pairs and spits out an associative array of the variables which it set. This parsing is done line by line.
 
 Lines beginning with the '#' character are treated as comments and ignored.
 Lines containing the '=' character are treated as configuration variable key/value pairs and we attempt to parse them as such. If they fail either the key or value regex they are ignored.
@@ -48,11 +54,12 @@ If a key is given more than once in the configuration file, the value in the las
 Configuration variables are whitelisted in the $configspec associative array. These names are case sensitive.  Each variable in the specification has a type and an optional regex which the value must match. If no regex is given, we fall back to a default regex per-type (see below).
 
 There are three supported types:
- - string - any string of text. default regex is [a-zA-Z0-9_.-]+
- - number - any ints or floats. default regex is [0-9.]+
- - boolean - yes/no, on/off, true/false. default regex is (yes|no|true|false|on|off)
+ - string - any string of text. default regex is `/^[a-zA-Z0-9_.-]+$/` (Note that spaces are not included.)
+ - number - any ints or floats. default regex is `/^[0-9.]+$/`
+ - boolean - yes/no, on/off, true/false. default regex is `/^(yes|no|true|false|on|off)$/`
 
 Example configspec:
+
     $configspec = array(
      "user" => array(
        "type" => 'string',
@@ -67,6 +74,7 @@ Example configspec:
     );
 
 Example usage:
+
     $config = parseConfig($configspec, $configfile);
 
     # config variables are now available in $config associative array with their names as keys.
@@ -79,3 +87,5 @@ Example usage:
         print "User $config[user] on server_id $config[server_id]\n";
     }
 
+[Specification]: #Specification
+[parseConfig()]: #parseConfig()
