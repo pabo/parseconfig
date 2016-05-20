@@ -16,7 +16,7 @@
 #
 # There are three supported types:
 #   string - any string of text. default regex is /^[a-zA-Z0-9_.-]+$/ (Note that spaces are not included.)
-#   number - any ints or floats. default regex is /^[0-9.]+$/
+#   number - any ints or floats. default regex is /^\d*\.?\d+$/
 #   boolean - yes/no, on/off, true/false. default regex is /^(yes|no|true|false|on|off)$/
 #
 # Example configspec:
@@ -45,6 +45,9 @@
 # if ($config[verbose]) {
 #     print "User $config[user] on server_id $config[server_id]\n";
 # }
+#
+# TODO: possible enhancements
+# option to warn if value doesn't match regex
 
 
 function parseConfig($configspec, $configfile) {
@@ -75,15 +78,13 @@ function parseConfig($configspec, $configfile) {
 						$regex = $configspec["$name"]["regex"] ?: "(yes|no|true|false|on|off)";
 
 						if (preg_match("/^$regex$/", $value)) {
-							$configspec["$name"]["value"] = (bool) preg_match("/^(true|on|yes)$/", $value);
 							$variables["$name"] = (bool) preg_match("/^(true|on|yes)$/", $value);
 						}
 					}
 					elseif ($configspec["$name"]["type"] === 'number') {
-						$regex = $configspec["$name"]["regex"] ?: "[0-9.]+";
+						$regex = $configspec["$name"]["regex"] ?: "\d*\.?\d+";
 
 						if (preg_match("/^$regex$/", $value)) {
-							$configspec["$name"]["value"] = 0 + $value; # ensures we store as a number (int/double/whatever)
 							$variables["$name"] = 0 + $value; # ensures we store as a number (int/double/whatever)
 						}
 					}
@@ -91,7 +92,6 @@ function parseConfig($configspec, $configfile) {
 						$regex = $configspec["$name"]["regex"] ?: "[a-zA-Z0-9_.-]+";
 
 						if (preg_match("/^$regex$/", $value)) {
-							$configspec["$name"]["value"] = "$value";
 							$variables["$name"] = "$value";
 						}
 					}

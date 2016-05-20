@@ -4,6 +4,7 @@ This is a sample PHP project for a developer position. Please see my other sampl
 [parseConfig()](#parseconfig)  
 [Specification](#specification)  
 [Example](#example-usage)  
+[TODO](#todo)  
 [Author](#author)  
 
 ## parseConfig()
@@ -18,7 +19,7 @@ Configuration variables are whitelisted in the $configspec associative array. Th
 
 There are three supported types:
  - string - any string of text. default regex is `/^[a-zA-Z0-9_.-]+$/` (Note that spaces are not included.)
- - number - any ints or floats. default regex is `/^[0-9.]+$/`
+ - number - any ints or floats. default regex is `/^\d*\.?\d+$/`
  - boolean - yes/no, on/off, true/false. default regex is `/^(yes|no|true|false|on|off)$/`
 
 ## Example usage:
@@ -85,5 +86,11 @@ own best practices and coding/design principles.
     log_file_path = /tmp/logfile.log
     send_notifications = yes
 
+##TODO
+Possible enhancements:
+- option to warn if value doesn't match regex
+
 ## Author
-[brett.schellenberg@gmail.com]
+Hey - I'm Brett. I like coding and solving problems. Questions?
+
+brett.schellenberg@gmail.com
