@@ -1,11 +1,55 @@
-1. [Specification]
-2. [parseConfig()]
+# Welcome to parseConfig
+This is a sample PHP project for a developer position. Please see my other sample repositories as well!
 
+1. [parseConfig()](parseConfig)
+2. [Specification](Specification)
+3. [Example](Example Usage)
+3. [Author](Author)
 
+## parseConfig()
+`parseConfig()` parses a configuration file which may contain comments and configuration variable key/pairs and spits out an associative array of the variables which it set. This parsing is done line by line.
 
+Lines beginning with the '#' character are treated as comments and ignored.
+Lines containing the '=' character are treated as configuration variable key/value pairs and we attempt to parse them as such. If they fail either the key or value regex they are ignored.
+All other lines are ignored.
+If a key is given more than once in the configuration file, the value in the last valid definition will be used.
+
+Configuration variables are whitelisted in the $configspec associative array. These names are case sensitive.  Each variable in the specification has a type and an optional regex which the value must match. If no regex is given, we fall back to a default regex per-type (see below).
+
+There are three supported types:
+ - string - any string of text. default regex is `/^[a-zA-Z0-9_.-]+$/` (Note that spaces are not included.)
+ - number - any ints or floats. default regex is `/^[0-9.]+$/`
+ - boolean - yes/no, on/off, true/false. default regex is `/^(yes|no|true|false|on|off)$/`
+
+## Example usage:
+See `test.php` for a demonstration, or this short snippet below:
+
+    $configspec = array(
+      "user" => array(
+        "type" => 'string',
+        "regex" => '[a-z]+',
+      ),
+      "server_id" => array(
+        "type" => 'number',
+      ),
+      "verbose" => array(
+        "type" => 'boolean',
+      ),
+    );
+
+    $config = parseConfig($configspec, $configfile);
+
+    # config variables are now available in $config associative array with their names as keys.
+    # $config[user]
+    # $config[server_id]
+    # $config[verbose]
+    # etc
+
+    if ($config[verbose]) {
+        print "User $config[user] on server_id $config[server_id]\n";
+    }
 
 ## Specification
-=============
 Write some code that can parse a configuration file
 following the specifications below. Follow your
 own best practices and coding/design principles.
@@ -26,8 +70,7 @@ own best practices and coding/design principles.
   how you call it/etc.
 - Push your work to a public github repository and send us the link.
 
-## Valid config file:
-================
+### Valid config file:
 
     # This is what a comment looks like, ignore it
     # All these config lines are valid
@@ -42,50 +85,5 @@ own best practices and coding/design principles.
     log_file_path = /tmp/logfile.log
     send_notifications = yes
 
-## parseConfig()
-===========
-`parseConfig()` parses a configuration file which may contain comments and configuration variable key/pairs and spits out an associative array of the variables which it set. This parsing is done line by line.
-
-Lines beginning with the '#' character are treated as comments and ignored.
-Lines containing the '=' character are treated as configuration variable key/value pairs and we attempt to parse them as such. If they fail either the key or value regex they are ignored.
-All other lines are ignored.
-If a key is given more than once in the configuration file, the value in the last valid definition will be used.
-
-Configuration variables are whitelisted in the $configspec associative array. These names are case sensitive.  Each variable in the specification has a type and an optional regex which the value must match. If no regex is given, we fall back to a default regex per-type (see below).
-
-There are three supported types:
- - string - any string of text. default regex is `/^[a-zA-Z0-9_.-]+$/` (Note that spaces are not included.)
- - number - any ints or floats. default regex is `/^[0-9.]+$/`
- - boolean - yes/no, on/off, true/false. default regex is `/^(yes|no|true|false|on|off)$/`
-
-Example configspec:
-
-    $configspec = array(
-     "user" => array(
-       "type" => 'string',
-       "regex" => '[a-z]+',
-     ),
-     "server_id" => array(
-       "type" => 'number',
-     ),
-     "verbose" => array(
-       "type" => 'boolean',
-     ),
-    );
-
-Example usage:
-
-    $config = parseConfig($configspec, $configfile);
-
-    # config variables are now available in $config associative array with their names as keys.
-    # $config[user]
-    # $config[server_id]
-    # $config[verbose]
-    # etc
-
-    if ($config[verbose]) {
-        print "User $config[user] on server_id $config[server_id]\n";
-    }
-
-[Specification]: #Specification
-[parseConfig()]: #parseConfig()
+## Author
+[brett.schellenberg@gmail.com]
