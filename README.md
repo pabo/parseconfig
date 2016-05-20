@@ -4,6 +4,7 @@ This is a sample PHP project for a developer position. Please see my other sampl
 [parseConfig()](#parseconfig)  
 [Specification](#specification)  
 [Example](#example-usage)  
+[Testing](#testing)  
 [TODO](#todo)  
 [Author](#author)  
 
@@ -55,6 +56,41 @@ See `test.php` for a demonstration, or this short snippet below:
 Given the sample configuration file, below, the above code would output
 
     User user on server_id 55331
+
+## Testing
+`php parseconfig_test.php` will run a series of unit tests using `test.config`
+
+    > php parseconfig_test.php
+    
+    Running parseconfig unit tests...
+    boolean.yesno.yes: SUCCESS
+    boolean.yesno.no: SUCCESS
+    boolean.yesno.true: SUCCESS
+    boolean.yesno.false: SUCCESS
+    boolean.yesno.null: SUCCESS
+    boolean.truefalse.yes: SUCCESS
+    boolean.truefalse.no: SUCCESS
+    boolean.truefalse.true: SUCCESS
+    boolean.truefalse.false: SUCCESS
+    boolean.truefalse.null: SUCCESS
+    string.regex.letters.abcd: SUCCESS
+    string.regex.letters.AbCd: SUCCESS
+    string.regex.letters.1abc: SUCCESS
+    string.regex.letters.abc_: SUCCESS
+    number.100: SUCCESS
+    number.one: SUCCESS
+    number.5.5: SUCCESS
+    number.0: SUCCESS
+    number.0.0: SUCCESS
+    uncommented: SUCCESS
+    commented: SUCCESS
+    spaces.none: SUCCESS
+    spaces.left: SUCCESS
+    spaces.right: SUCCESS
+    spaces.leading: SUCCESS
+    spaces.trailing: SUCCESS
+    spaces.lots: SUCCESS
+    spaces.between: SUCCESS
 
 
 ## Specification

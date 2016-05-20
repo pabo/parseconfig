@@ -1,4 +1,10 @@
 <?php
+# brett.schellenberg@gmail.com
+#
+# This is the unit test for parseconfig.php. It requires parseconfig.php and test.config be present.
+# run it like:
+#   php parseconfig_test.php
+# and look on stdout for success/fail
 
 require_once('parseconfig.php');
 
@@ -119,10 +125,6 @@ $configconfig = array(
 
 $config = parseConfig($configconfig, $filename);
 
-if ($config[verbose]) {
-	print "User $config[user] on server_id $config[server_id]\n";
-}
-
 # This tests array of variable key names to expected values could have been merged into the
 # $configconfig for easier maintainability, but then we would be constructing the $configconfig
 # differently in our test than we would in live, so I decided against it.
@@ -167,7 +169,7 @@ foreach ($tests as $key => $value) {
 	print "$key: " . (($config[$key] == $value) ? "SUCCESS\n" : "FAIL\n");
 }
 
-print "\n\n";
-var_dump($config);
+#print "\n\n";
+#var_dump($config);
 
 ?>
