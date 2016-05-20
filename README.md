@@ -1,10 +1,10 @@
 # Welcome to parseConfig
 This is a sample PHP project for a developer position. Please see my other sample repositories as well!
 
-1. [parseConfig()](#parseConfig)
-2. [Specification](#Specification)
-3. [Example](#Example Usage)
-3. [Author](#Author)
+[parseConfig()](#parseconfig)  
+[Specification](#specification)  
+[Example](#example-usage)  
+[Author](#author)  
 
 ## parseConfig()
 `parseConfig()` parses a configuration file which may contain comments and configuration variable key/pairs and spits out an associative array of the variables which it set. This parsing is done line by line.
@@ -70,7 +70,7 @@ own best practices and coding/design principles.
   how you call it/etc.
 - Push your work to a public github repository and send us the link.
 
-### Valid config file:
+#### Valid config file:
 
     # This is what a comment looks like, ignore it
     # All these config lines are valid
